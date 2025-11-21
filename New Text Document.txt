@@ -1,0 +1,89 @@
+3 a) Design a responsive UI that adapts to different screen sizes
+import 'package:flutter/material.dart';
+//main function
+void main() {
+ runApp(MyApp()); //leets change it
+}
+//stateless widget class
+class MyApp extends StatelessWidget {
+ const MyApp({super.key});
+ @override
+ Widget build(BuildContext context) {
+ return SafeArea(
+ child: MaterialApp(
+ home: Text('CSE'),
+ ),
+ );
+ }
+}
+
+
+
+3 b) Implement media queries and breakpoints for responsiveness.
+import 'package:flutter/material.dart';
+void main() {
+runApp(MyApp());
+}
+class MyApp extends StatelessWidget {
+@override
+Widget build(BuildContext context) {
+return MaterialApp(
+home: ResponsiveLayout(),
+);
+}
+}
+class ResponsiveLayout extends StatelessWidget {
+@override
+Widget build(BuildContext context) {
+var mediaQueryData = MediaQuery.of(context);
+var screenWidth = mediaQueryData.size.width;
+if (screenWidth < 600) {
+return Scaffold(
+appBar: AppBar(title: Text('Mobile Layout')),
+body: _buildNarrowContainers(),
+);
+} else if (screenWidth < 1200) {
+return Scaffold(
+appBar: AppBar(title: Text('Tablet Layout')),
+body: _buildMediumContainers(),
+);
+} else {
+return Scaffold(
+appBar: AppBar(title: Text('Desktop Layout')),
+body: _buildWideContainers(),
+);
+}
+}
+Widget _buildNarrowContainers() {
+return Column(
+mainAxisAlignment: MainAxisAlignment.center,
+children: <Widget>[
+Container(color: Colors.red, width: 100, height: 100),
+Container(color: Colors.green, width: 100, height: 100),
+Container(color: Colors.blue, width: 100, height: 100),
+],
+);
+}
+Widget _buildMediumContainers() {
+return Row(
+mainAxisAlignment: MainAxisAlignment.center,
+children: <Widget>[
+Container(color: Colors.red, width: 100, height: 100),
+Container(color: Colors.green, width: 100, height: 100),
+Container(color: Colors.blue, width: 100, height: 100),
+],
+);
+}
+Widget _buildWideContainers() {
+return GridView.count(
+crossAxisCount: 3,
+mainAxisSpacing: 10,
+crossAxisSpacing: 10,
+children: <Widget>[
+Container(color: Colors.red, width: 100, height: 100),
+Container(color: Colors.green, width: 100, height: 100),
+Container(color: Colors.blue, width: 100, height: 100),
+],
+);
+}
+}
